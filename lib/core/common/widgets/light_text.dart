@@ -15,7 +15,7 @@ class AppLightText extends StatelessWidget {
     return Text(
       captionText,
       style: TextStyle(
-        color: AppColors.textPrimary,
+        color: AppColors.textGrayColor,
         fontWeight: FontWeight.w500,
         fontSize: textSize,
         letterSpacing: 0.1,

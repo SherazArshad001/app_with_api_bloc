@@ -27,7 +27,7 @@ class ReviewWidget extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.navbarUnselectIconColor,
+                  color: AppColors.navbarUnselectedIconColor,
                 ),
               ),
             ],
@@ -43,7 +43,7 @@ class ReviewWidget extends StatelessWidget {
           rating,
           style: const TextStyle(
             fontSize: 14,
-            color: AppColors.navbarUnselectIconColor,
+            color: AppColors.navbarUnselectedIconColor,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -51,7 +51,7 @@ class ReviewWidget extends StatelessWidget {
           reviews,
           style: const TextStyle(
             fontSize: 14,
-            color: AppColors.navbarUnselectIconColor,
+            color: AppColors.navbarUnselectedIconColor,
             fontWeight: FontWeight.w500,
           ),
         ),
