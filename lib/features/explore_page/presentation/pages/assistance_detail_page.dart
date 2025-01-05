@@ -23,9 +23,9 @@ class OldAgeAssistanceDetail extends StatelessWidget {
         showLeading: true,
         trailingImage: "assets/images/notifications.png",
       ),
-      child: const Column(
+      child: Column(
         children: [
-          Expanded(
+          const Expanded(
             child: SingleChildScrollView(
               padding: EdgeInsets.all(15.0),
               child: Column(
@@ -95,6 +95,7 @@ class OldAgeAssistanceDetail extends StatelessWidget {
           ),
           MainButtonBottomNavbar(
             buttonText: 'Apply Now',
+            onButtonPressed: () {},
           ),
         ],
       ),

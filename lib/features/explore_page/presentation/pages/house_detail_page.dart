@@ -4,7 +4,7 @@ import 'package:senior_housing_central/core/common/colors/app_colors.dart';
 import 'package:senior_housing_central/core/common/widgets/appbar.dart';
 import 'package:senior_housing_central/core/common/buttons/border_button.dart';
 
-class OldAgeHouseDetails extends StatelessWidget {
+class OldAgeHouseDetails extends StatefulWidget {
   final String imagePath;
   final String name;
   final String location;
@@ -21,6 +21,14 @@ class OldAgeHouseDetails extends StatelessWidget {
   });
 
   @override
+  OldAgeHouseDetailsState createState() => OldAgeHouseDetailsState();
+}
+
+class OldAgeHouseDetailsState extends State<OldAgeHouseDetails> {
+  String? appliedImagePath;
+  String? appliedName;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
@@ -29,7 +37,7 @@ class OldAgeHouseDetails extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Image.asset(
-              imagePath,
+              widget.imagePath,
               fit: BoxFit.cover,
             ),
             Container(
@@ -49,7 +57,7 @@ class OldAgeHouseDetails extends StatelessWidget {
             CustomAppBar(
               backgroundColor: Colors.transparent,
               leadingIconColor: Colors.white,
-              appbarText: name,
+              appbarText: widget.name,
               titleColor: Colors.white,
               showLeading: true,
               trailingImage: "assets/images/notifications2.png",
@@ -102,7 +110,7 @@ class OldAgeHouseDetails extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      name,
+                      widget.name,
                       style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -110,12 +118,12 @@ class OldAgeHouseDetails extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text(location),
+                        Text(widget.location),
                         Image.asset('assets/images/rattingstar.png'),
                         const SizedBox(width: 3),
-                        Text(rating),
+                        Text(widget.rating),
                         const SizedBox(width: 10),
-                        Text(reviews),
+                        Text(widget.reviews),
                       ],
                     ),
                     const Padding(
@@ -135,8 +143,9 @@ class OldAgeHouseDetails extends StatelessWidget {
                 ),
               ),
             ),
-            const MainButtonBottomNavbar(
+            MainButtonBottomNavbar(
               buttonText: 'Apply',
+              onButtonPressed: () {},
             ),
           ],
         ),

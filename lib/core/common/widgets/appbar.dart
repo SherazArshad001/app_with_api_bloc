@@ -4,10 +4,12 @@ import 'package:senior_housing_central/features/notification/presentation/pages/
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? appbarText;
+  final String? leadingButtonText;
   final String? appbarImage;
   final String? trailingImage;
   final bool showLeading;
   final VoidCallback? onTrailingPressed;
+  final bool showLeadingTextButton; // Flag to show the TextButton for leading
 
   final Color backgroundColor;
   final Color titleColor;
@@ -17,11 +19,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   const CustomAppBar({
     super.key,
+    this.leadingButtonText,
     this.appbarText,
     this.appbarImage,
     this.trailingImage,
     this.showLeading = false,
     this.onTrailingPressed,
+    this.showLeadingTextButton = false,
     this.backgroundColor = AppColors.background,
     this.titleColor = AppColors.textPrimary,
     this.borderColor = AppColors.border,
@@ -40,15 +44,30 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       centerTitle: true,
       leading: showLeading
-          ? IconButton(
-              icon: Icon(
-                Icons.navigate_before,
-                color: leadingIconColor,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            )
+          ? showLeadingTextButton && leadingButtonText != null
+              // Show the TextButton only if showLeadingTextButton is true and leadingButtonText is not null
+              ? TextButton(
+                  onPressed: () {
+                    // Handle the TextButton press action
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    leadingButtonText!,
+                    style: TextStyle(
+                      color: leadingIconColor,
+                    ),
+                  ),
+                )
+              // Else, show the IconButton
+              : IconButton(
+                  icon: Icon(
+                    Icons.navigate_before,
+                    color: leadingIconColor,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
           : null,
       title: appbarImage != null
           ? Image.asset(

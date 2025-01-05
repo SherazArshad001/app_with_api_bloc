@@ -4,9 +4,11 @@ import 'package:senior_housing_central/core/common/colors/app_colors.dart';
 
 class MainButtonBottomNavbar extends StatelessWidget {
   final String buttonText;
+  final VoidCallback onButtonPressed;
   const MainButtonBottomNavbar({
     super.key,
     required this.buttonText,
+    required this.onButtonPressed,
   });
 
   @override
@@ -30,7 +32,7 @@ class MainButtonBottomNavbar extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: AppMainButton(
               buttonText: buttonText,
-              onPressed: () {},
+              onPressed: onButtonPressed,
             ),
           ),
         ),

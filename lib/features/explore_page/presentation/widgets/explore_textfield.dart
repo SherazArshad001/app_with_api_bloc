@@ -10,15 +10,15 @@ class SearchTextField extends StatelessWidget {
       onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
       decoration: InputDecoration(
         labelText: 'Location',
-        labelStyle: const TextStyle(color: AppColors.navbarUnselectIconColor),
-        hintStyle: const TextStyle(color: AppColors.navbarUnselectIconColor),
+        labelStyle: const TextStyle(color: AppColors.navbarUnselectedIconColor),
+        hintStyle: const TextStyle(color: AppColors.navbarUnselectedIconColor),
         suffixIcon:
             const Icon(Icons.search, color: AppColors.navbarSelectIconColor),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         enabledBorder: OutlineInputBorder(
           borderSide:
-              const BorderSide(color: AppColors.navbarUnselectIconColor),
+              const BorderSide(color: AppColors.navbarUnselectedIconColor),
           borderRadius: BorderRadius.circular(15),
         ),
         focusedBorder: OutlineInputBorder(

@@ -48,7 +48,7 @@ class PasswordSeccessChange extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const LogInScreen(),
+                    builder: (context) => LogInScreen(),
                   ),
                 );
               },

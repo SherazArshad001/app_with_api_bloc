@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:senior_housing_central/core/common/buttons/goto_next_button.dart';
 import 'package:senior_housing_central/core/common/colors/app_colors.dart';
 import 'package:senior_housing_central/core/common/widgets/appbar.dart';
 import 'package:senior_housing_central/core/common/widgets/background.dart';
 import 'package:senior_housing_central/core/common/widgets/bold_text.dart';
 import 'package:senior_housing_central/core/common/widgets/light_text.dart';
+import 'package:senior_housing_central/features/profile_page/presentation/widgets/document_card.dart';
+import 'package:senior_housing_central/features/profile_page/presentation/widgets/image_picker_container.dart';
 
 class DocumentScreen extends StatelessWidget {
   final String buttonText;
@@ -21,57 +24,98 @@ class DocumentScreen extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
-            Row(
-              children: [
-                const AppBoldText(
-                  captionText: 'Documents',
-                ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    minimumSize: const Size(0, 0),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  child: const AppLightText(
-                    captionText: 'Edit',
-                  ),
-                ),
-              ],
+            const RowContent(
+              leadingText: 'Documents',
+              trailingIconText: 'Edit',
             ),
-            Card(
-              color: AppColors.background,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'assets/images/userdocument1.png',
-                        fit: BoxFit.cover,
-                        width: 80,
-                        height: 100,
-                      ),
-                    ),
-                    const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        AppBoldText(captionText: 'Drivers License'),
-                        AppLightText(captionText: 'PDF added 1 hr ago'),
-                      ],
-                    ),
-                    const Text('data'),
-                  ],
+            const DocumentCard(
+              cardImagePath: 'assets/images/userdocument1.png',
+              cardName: 'Drivers License',
+              cardDescription: 'PDF added 1 hr ago',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const DocumentCard(
+              cardImagePath: 'assets/images/userdocument1.png',
+              cardName: 'Drivers License',
+              cardDescription: 'PDF added 1 hr ago',
+              showEditButton: false,
+            ),
+            const Spacer(),
+            const ImagePickerContainer(
+              documentName: 'Add Proof of Income',
+              indicateText: 'Click to upload or take photo',
+            ),
+            const ImagePickerContainer(
+              documentName: 'Add Proof of Income',
+              indicateText: 'Click to upload or take photo',
+            ),
+            const ImagePickerContainer(
+              documentName: 'Add Proof of Income',
+              indicateText: 'Click to upload or take photo',
+            ),
+            const Spacer(),
+            const RowContent(
+              leadingText: 'Folder',
+              trailingIconText: 'Edit',
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.background,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: ListTile(
+                leading: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.folder_outlined,
+                    color: AppColors.focusedBorderColor,
+                  ),
+                ),
+                title: const AppBoldText(captionText: 'Personal Documents'),
+                subtitle: const AppLightText(captionText: '0 files'),
+                trailing: GotoNextButton(
+                  navigateNext: () {},
                 ),
               ),
             )
           ],
         ),
       ),
+    );
+  }
+}
+
+class RowContent extends StatelessWidget {
+  final String leadingText;
+  final String trailingIconText;
+  const RowContent({
+    super.key,
+    required this.leadingText,
+    required this.trailingIconText,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        AppBoldText(
+          captionText: leadingText,
+        ),
+        const Spacer(),
+        TextButton(
+          onPressed: () {},
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+            minimumSize: const Size(0, 0),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+          child: AppLightText(
+            captionText: trailingIconText,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -2,15 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:senior_housing_central/core/common/widgets/appbar.dart';
 import 'package:senior_housing_central/core/common/widgets/background.dart';
 import 'package:senior_housing_central/core/common/widgets/bold_text.dart';
+import 'package:senior_housing_central/core/utils/shared_preference/shared_preference_helper.dart';
+import 'package:senior_housing_central/features/application/presentation/pages/apply_housing.dart';
+import 'package:senior_housing_central/features/auth/log_in/presentation/pages/log_in_screen.dart';
 import 'package:senior_housing_central/features/profile_page/presentation/pages/document_page.dart';
 import 'package:senior_housing_central/features/profile_page/presentation/widgets/profile_card1.dart';
 import 'package:senior_housing_central/features/profile_page/presentation/widgets/profile_card2.dart';
 import 'package:senior_housing_central/features/profile_page/presentation/widgets/user_name_image.dart';
 
 class ProfileScreen extends StatelessWidget {
+  final String? imagePath;
+  final String? name;
   const ProfileScreen({
     super.key,
+    this.imagePath,
+    this.name,
   });
+
+  Future<void> logout(BuildContext context) async {
+    await SharedPreferencesHelper.clearPreferences();
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>  LogInScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +56,14 @@ class ProfileScreen extends StatelessWidget {
                 child: ProfileCard1(
                   imagePath: 'assets/images/filter.png',
                   titleText: 'Applications Submitted',
-                  navigateTo: () {},
+                  navigateTo: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ApplyHouseDetails(),
+                      ),
+                    );
+                  },
                 ),
               ),
               Row(
@@ -104,11 +129,14 @@ class ProfileScreen extends StatelessWidget {
                 navigateTo: () {},
                 imagePath: 'assets/images/filter.png',
               ),
-              TextButton(
-                onPressed: () {},
-                child: const AppBoldText(
-                  captionText: 'Log out of your account',
-                  textSize: 14,
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: TextButton(
+                  onPressed: () => logout(context),
+                  child: const AppBoldText(
+                    captionText: 'Log out of your account',
+                    textSize: 14,
+                  ),
                 ),
               ),
             ],

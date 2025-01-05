@@ -31,7 +31,7 @@ class TaggableCardState extends State<TaggableCard> {
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        height: _isVisible ? null : 60, // Initial height is 55 when collapsed
+        height: _isVisible ? null : 60,
         child: Card(
           color: AppColors.background,
           child: Padding(

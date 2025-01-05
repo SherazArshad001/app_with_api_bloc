@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:senior_housing_central/core/common/colors/app_colors.dart';
 import 'package:senior_housing_central/features/explore_page/presentation/pages/house_detail_page.dart';
-import 'package:senior_housing_central/features/explore_page/presentation/widgets/explore_screen_card/Housing_card.dart';
+import 'package:senior_housing_central/features/explore_page/presentation/widgets/explore_screen_card/housing_card.dart';
 import 'package:senior_housing_central/features/explore_page/presentation/widgets/explore_textfield.dart';
 
 class HousingButtonContent extends StatelessWidget {

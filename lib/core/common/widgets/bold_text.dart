@@ -12,14 +12,17 @@ class AppBoldText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      captionText,
-      style: TextStyle(
-        color: AppColors.textPrimary,
-        fontWeight: FontWeight.w700,
-        fontSize: textSize,
-        letterSpacing: 0.3,
-        height: 2.0,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: Text(
+        captionText,
+        style: TextStyle(
+          color: AppColors.textPrimary,
+          fontWeight: FontWeight.w700,
+          fontSize: textSize,
+          letterSpacing: 0.3,
+          height: 2.0,
+        ),
       ),
     );
   }
