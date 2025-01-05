@@ -3,6 +3,7 @@ import 'package:senior_housing_central/core/common/colors/app_colors.dart';
 import 'package:senior_housing_central/core/common/widgets/bottom_navbar.dart';
 import 'package:senior_housing_central/core/mixin/validator.dart';
 import 'package:senior_housing_central/core/extention/validation_ext.dart';
+import 'package:senior_housing_central/core/utils/shared_preference/shared_preference_helper.dart';
 import 'package:senior_housing_central/features/auth/log_in/presentation/widgets/already_have_account.dart';
 import 'package:senior_housing_central/features/auth/log_in/presentation/widgets/alternative_signup_text.dart';
 import 'package:senior_housing_central/features/auth/log_in/presentation/widgets/login_create_text.dart';
@@ -74,6 +75,20 @@ class _SignUpScreenState extends State<SignUpScreen> with Validator {
         4,
         (index) =>
             index < strength * 4 ? AppColors.selectedColor : Colors.grey);
+  }
+
+  void _handleSignUp() async {
+    if (formKey.currentState!.validate()) {
+      await SharedPreferencesHelper.setLoggedIn(true);
+      await SharedPreferencesHelper.setUserEmail(_emailController.text);
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CustomBottomNavbar(),
+        ),
+      );
+    }
   }
 
   @override
@@ -195,17 +210,7 @@ class _SignUpScreenState extends State<SignUpScreen> with Validator {
                           ],
                           const SizedBox(height: 20),
                           AppMainButton(
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const CustomBottomNavbar(),
-                                  ),
-                                );
-                              }
-                            },
+                            onPressed: _handleSignUp,
                             buttonText: 'Sign Up',
                             formKey: formKey,
                           ),

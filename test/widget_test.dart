@@ -1,30 +1,28 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:mocktail/mocktail.dart';
 import 'package:senior_housing_central/main.dart';
+import 'package:senior_housing_central/core/utils/shared_preference/shared_preference_helper.dart';
+import 'package:senior_housing_central/features/auth/log_in/presentation/pages/log_in_screen.dart';
+import 'package:senior_housing_central/core/common/widgets/bottom_navbar.dart';
+
+class MockSharedPreferencesHelper extends Mock
+    implements SharedPreferencesHelper {}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  late MockSharedPreferencesHelper mockSharedPreferencesHelper;
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  setUp(() {
+    mockSharedPreferencesHelper = MockSharedPreferencesHelper();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    when(() => mockSharedPreferencesHelper.isLoggedIn()).thenReturn(true);
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('App login state test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MyApp(isLoggedIn: mockSharedPreferencesHelper.isLoggedIn()),
+    );
+
+    expect(find.byType(CustomBottomNavbar), findsOneWidget);
+    expect(find.byType(LogInScreen), findsNothing);
   });
 }
